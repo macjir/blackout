@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/n8n-proxy/:path*",
+      "source": "/:path*",
       "destination": "https://n8n.okacko.vscht.cz/:path*"
     }
   ]
