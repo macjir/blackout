@@ -7,7 +7,7 @@ import { ChatWindow } from '../components/ChatWindow'
 import { ContactList } from '../components/ContactList'
 import { AlertBanner } from '../components/AlertBanner'
 import { StatusBadge } from '../components/StatusBadge'
-import { sendCitizenQuery } from '../lib/n8n'
+import { sendCitizenQuery, buildCitizenPayload } from '../lib/n8n'
 import { supabase } from '../lib/supabase'
 import { PERSONAS, ZONE } from '../lib/session'
 
@@ -49,13 +49,16 @@ export default function CitizenApp() {
     setInput('')
     setLoading(true)
 
-    await sendCitizenQuery({
-      session_id: persona.sessionId,
-      text,
-      location_zone: ZONE,
-      health_status: 'ok',
-      contacts: contacts.map((c) => ({ name: c.name, phone: c.phone, status: c.status })),
-    })
+    await sendCitizenQuery(
+      buildCitizenPayload({
+        text,
+        zone: ZONE,
+        health: null,
+        contacts,
+        alerts,
+        sessionId: persona.sessionId,
+      })
+    )
 
     setLoading(false)
   }
