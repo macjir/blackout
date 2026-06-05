@@ -2,13 +2,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import AlertScreen from './pages/AlertScreen'
 import CitizenApp from './pages/CitizenApp'
 import MayorApp from './pages/MayorApp'
-import { getRole } from './lib/session'
-
-function RoleGuard() {
-  const role = getRole()
-  if (role === 'mayor') return <Navigate to="/mayor" replace />
-  return <Navigate to="/" replace />
-}
 
 export default function App() {
   return (
@@ -16,9 +9,10 @@ export default function App() {
       <div className="min-h-full max-w-md mx-auto">
         <Routes>
           <Route path="/" element={<AlertScreen />} />
-          <Route path="/citizen" element={<CitizenApp />} />
+          <Route path="/citizen/:personaId" element={<CitizenApp />} />
+          <Route path="/citizen" element={<Navigate to="/citizen/1" replace />} />
           <Route path="/mayor" element={<MayorApp />} />
-          <Route path="*" element={<RoleGuard />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -1,24 +1,21 @@
-import { v4 as uuidv4 } from 'uuid'
-
-export function getSessionId() {
-  let id = sessionStorage.getItem('session_id')
-  if (!id) {
-    id = `citizen-${uuidv4()}`
-    sessionStorage.setItem('session_id', id)
-  }
-  return id
+// Fixed personas — same URL always shows same data across all devices
+export const PERSONAS = {
+  '1': {
+    sessionId: 'session-citizen-1',
+    userId: 'user-citizen-1',
+    name: 'Adam',
+    description: 'Student, 22',
+    color: 'blue',
+  },
+  '2': {
+    sessionId: 'session-citizen-2',
+    userId: 'user-citizen-2',
+    name: 'Helena',
+    description: 'Retired, 63',
+    color: 'purple',
+  },
 }
 
-export function getUserId() {
-  let id = localStorage.getItem('user_id')
-  if (!id) {
-    id = `user-${uuidv4()}`
-    localStorage.setItem('user_id', id)
-  }
-  return id
-}
+export const ZONE = 'Demo Zone'
+export const COORDINATOR_ID = 'mayor-1'
 
-export function getRole() {
-  const params = new URLSearchParams(window.location.search)
-  return params.get('role') || 'citizen'
-}
