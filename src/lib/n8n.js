@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_N8N_BASE_URL
+const BASE = (import.meta.env.VITE_N8N_BASE_URL ?? '').replace(/\/+$/, '')
 
 export function buildCitizenPayload({ text, zone, health, contacts, alerts, sessionId }) {
   const coordinatorUpdates = alerts.map((a) => ({
