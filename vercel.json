@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/webhook-test/:path*",
+      "destination": "https://n8n.okacko.vscht.cz/webhook-test/:path*"
+    },
+    {
+      "source": "/webhook/:path*",
+      "destination": "https://n8n.okacko.vscht.cz/webhook/:path*"
+    }
+  ]
+}

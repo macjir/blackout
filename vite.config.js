@@ -25,4 +25,18 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    proxy: {
+      '/webhook-test': {
+        target: 'https://n8n.okacko.vscht.cz',
+        changeOrigin: true,
+        secure: true,
+      },
+      '/webhook': {
+        target: 'https://n8n.okacko.vscht.cz',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
+  },
 })
